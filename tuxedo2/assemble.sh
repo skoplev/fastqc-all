@@ -53,7 +53,10 @@ done
 
 # Extract transcript counts and write to .csv files
 # prepDE.py can be found at https://ccb.jhu.edu/software/stringtie/index.shtml?t=manual#deseq
-cd merged
-prepDE.py -i counts
+# cd merged
+mkdir results
+prepDE.py -i counts \
+	-g results/gene_count_matrix.csv \
+	-t results/transcript_count_matrix.csv
 
 # Cleanup of files 

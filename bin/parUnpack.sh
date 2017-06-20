@@ -16,11 +16,9 @@ mkdir logs
 bsub -J "unpigz" \
 	-P $account \
 	-q alloc \
-	-W 6:00 \
-	-R "rusage[mem=20000]" \
+	-W 1:00 \
+	-R rusage[mem=20000] \
 	-n 8 \
 	-e logs/error.%J \
 	-o logs/output.%J \
-	unpigz -k \
-		*.fastq.gz
-
+	ls *.fastq.gz | xargs unpigz -k

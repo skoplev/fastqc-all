@@ -1,5 +1,7 @@
 #!/bin/bash
 
+module load samtools
+
 # Convert SAM to BAM files, also sorts based on genomic coordinates
 cd align
 mkdir bam

@@ -33,9 +33,10 @@ for file in *.fastq; do
 	bsub -J "HISAT2" \
 		-P $account \
 		-q alloc \
-		-W 12:00 \
+		-W 6:00 \
 		-R rusage[mem=4000] \
-		-r logs/error.%J \
+		-n 6 \
+		-e logs/error.%J \
 		-o logs/output.%J \
 		hisat2 -p 6 \
 			--dta \

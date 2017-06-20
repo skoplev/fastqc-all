@@ -3,6 +3,8 @@
 
 # parAlign.sh <RNA-seq dir>
 
+module load hisat2
+
 # Change directory to data projects folder
 data_dir=$1
 if [[ -n $data_dir ]]; then
@@ -19,12 +21,16 @@ mkdir logs  # for bsub logs
 
 # Unzip fastq files keeping original
 echo "Decompressing fastq files"
-gunzip -k *.fastq.gz
+# gunzip -k *.fastq.gz  # -k argument only works for versions >1.6
+
+for file in *.fastq.gz; do
+	zcat "$file" > "${file%.*}"
+done
 
 # Loop over each .fastq file
 for file in *.fastq; do
 	echo "Aligning: " $file
-	bsub -J "HISAT2_$file" \
+	bsub -J "HISAT2" \
 		-P $account \
 		-q alloc \
 		-W 12:00 \

@@ -4,12 +4,16 @@
 # Keeps original fastq.gz files.
 # USAGE: parDecompress.sh <dir>
 
+
 account="acc_STARNET"
 
 data_dir=$1
 if [[ -n $data_dir ]]; then
 	cd $data_dir  # otherwise use current working directory
 fi
+
+	
+
 
 # Unzip fastq files keeping original
 echo "Decompressing fastq files"

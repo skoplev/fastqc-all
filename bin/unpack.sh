@@ -4,7 +4,6 @@
 # Keeps original fastq.gz files.
 # USAGE: parDecompress.sh <dir>
 
-
 account="acc_STARNET"
 
 data_dir=$1
@@ -12,20 +11,13 @@ if [[ -n $data_dir ]]; then
 	cd $data_dir  # otherwise use current working directory
 fi
 
-	
-
+echo "Decompressing fastq files"
+# Unzip fastq files keeping original
+# gunzip -k *.fastq.gz  # -k argument only works for versions >1.6
 
 # Unzip fastq files keeping original
-echo "Decompressing fastq files"
-mkdir logs
 for file in *.fastq.gz; do
-	bsub -J "gzip" \
-		-P $account \
-		-q alloc \
-		-W 1:00 \
-		-R "rusage[mem=2000]" \
-		-n 1 \
-		-e logs/error.%J \
-		-o logs/output.%J \
-		zcat "$file" > "${file%.*}"
+	echo $file
+	gunzip -c *.fastq.gz > "${file%.*}"
 done
+

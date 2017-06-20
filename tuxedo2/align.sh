@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Change directory to data projects folder
-cd ~/DataProjects/phospholamban-cardiomyocytes/RNA-seq/ribo-zero
+data_dir=$1
+if [[ -n $data_dir ]]; then
+	cd $data_dir  # otherwise use current working directory
+fi
+
 
 # HISAT2 index basename
 index=~/DataBases/HISAT2/index/grch38_snp_tran/genome_snp_tran
@@ -13,7 +17,7 @@ mkdir align
 echo "Decompressing fastq files"
 gunzip -k *.fastq.gz
 
-# Loop over each .fastq.gz file
+# Loop over each .fastq file
 for file in *.fastq; do
 	echo "Aligning: " $file
 	hisat2 -p 6 \

@@ -20,6 +20,6 @@ bsub -J "unpigz" \
 	-n 8 \
 	-e logs/error.%J \
 	-o logs/output.%J \
-	unpigz \k \
+	unpigz -k \
 		*.fastq.gz
 

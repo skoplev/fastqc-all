@@ -29,7 +29,7 @@ mkdir logs  # for bsub logs
 # done
 
 # Loop over each .fastq file
-for file in *.fastq; do
+for file in *.fastq.gz; do
 	echo "Aligning: " $file
 	bsub -J "HISAT2" \
 		-P $account \

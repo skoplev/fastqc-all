@@ -18,8 +18,8 @@ for file in *.fastq.gz; do
 	bsub -J "gzip" \
 		-P $account \
 		-q alloc \
-		-W 2:00 \
-		-R rusage[mem=2000] \
+		-W 1:00 \
+		-R "rusage[mem=2000]" \
 		-n 1 \
 		-e logs/error.%J \
 		-o logs/output.%J \

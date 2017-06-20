@@ -12,6 +12,7 @@ if [[ -n $data_dir ]]; then
 	cd $data_dir  # otherwise use current working directory
 fi
 
+mkdir logs
 bsub -J "unpigz" \
 	-P $account \
 	-q alloc \

@@ -35,7 +35,7 @@ for file in *.fastq; do
 		-P $account \
 		-q alloc \
 		-W 2:00 \
-		-R "rusage[mem=10000]" \
+		-R "rusage[mem=2000]" \
 		-n 4 \
 		-e logs/error.%J \
 		-o logs/output.%J \

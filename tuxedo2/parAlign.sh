@@ -1,9 +1,10 @@
 #BSUB -J HISAT2
 #BSUB -P acc_STARNET
 #BSUB -q alloc
-#BSUB -W 12:00
-#BSUB -R "rusage[mem=2000]"
-#BSUB -n 8
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=4000]"
+#BSUB -M 16000
+#BSUB -n 4
 #BSUB -e logs/error.%J
 #BSUB -o logs/output.%J
 
@@ -22,10 +23,13 @@ module load hisat2
 
 # HISAT2 index basename
 index=~/links/STARNET/koples01/data_bases/HISAT2/index/grch38_snp_tran/genome_snp_tran
+# out_dir="."
+out_dir=~/links/scratch/ART
 account="acc_STARNET"
 
-mkdir align  # output dir
+# mkdir align  # output dir
 mkdir logs  # for bsub logs
+mkdir -p $out_dir/align
 # mkdir temp-unzipped
 
 # # Unzip fastq files keeping original
@@ -42,11 +46,11 @@ mkdir logs  # for bsub logs
 # Loop over each .fastq file
 for file in *.fastq; do
 	echo "Aligning: " $file
-	hisat2 -p 8 \
+	hisat2 -p 4 \
 		--dta \
 		-x $index \
 		-q $file \
-		-S align/${file%.*}.sam
+		-S $out_dir/align/${file%.*}.sam
 done
 
 

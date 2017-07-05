@@ -2,7 +2,8 @@
 #BSUB -P acc_STARNET
 #BSUB -q alloc
 #BSUB -W 12:00
-#BSUB -R "rusage[mem=2000]"
+#BSUB -R "rusage[mem=4000]"
+#BSUB -M 4000
 #BSUB -n 4
 #BSUB -e logs/error.%J
 #BSUB -o logs/output.%J

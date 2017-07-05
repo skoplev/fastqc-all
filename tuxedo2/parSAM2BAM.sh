@@ -13,6 +13,7 @@
 module load samtools
 
 # Convert SAM to BAM files, also sorts based on genomic coordinates
+mkdir logs
 mkdir bam
 for file in *.sam; do
 	echo "Converting $file"

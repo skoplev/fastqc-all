@@ -2,8 +2,8 @@
 #BSUB -P acc_STARNET
 #BSUB -q alloc
 #BSUB -W 12:00
-#BSUB -M 8000
-#BSUB -n 1
+#BSUB -M 2000
+#BSUB -n 4
 #BSUB -e logs/error.%J
 #BSUB -o logs/output.%J
 
@@ -15,9 +15,12 @@ module load samtools
 # Convert SAM to BAM files, also sorts based on genomic coordinates
 mkdir logs
 mkdir bam
+mkdir tmp
 for file in *.sam; do
 	echo "Converting $file"
 	samtools sort -@ 8 \
+		-T tmp/tmp \
+		-O bam \
 		-o bam/${file%.*}.bam \
 		$file
 done

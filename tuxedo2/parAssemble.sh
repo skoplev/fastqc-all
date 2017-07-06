@@ -8,6 +8,10 @@
 #BSUB -e logs/error.%J
 #BSUB -o logs/output.%J
 
+# Assembles aligned sequences using genome annotation. Makes matrix of counts in results/ dir.
+
+# requires prepDE.py executable program in path
+
 # USAGE:
 #  bsub -cwd <dir bam files> < parAssemble.sh
 
@@ -64,6 +68,6 @@ done
 # prepDE.py can be found at https://ccb.jhu.edu/software/stringtie/index.shtml?t=manual#deseq
 # cd merged
 mkdir results
-prepDE.py -i counts \
+prepDE.py -i merged/counts \
 	-g results/gene_count_matrix.csv \
 	-t results/transcript_count_matrix.csv

@@ -8,11 +8,17 @@
 #BSUB -e logs/error.%J
 #BSUB -o logs/output.%J
 
+# USAGE:
+#  bsub -cwd <dir bam files> < parAssemble.sh
 
 module load stringtie
 
-mkdir assembl
+# Genome annotation file
+# annot=~/DataBases/HumanGenome/ensemble_annot/Homo_sapiens.GRCh38.87.gff3
+annot=~/links/STARNET/koples01/data_bases/HumanGenome/ensemble_annot/Homo_sapiens.GRCh38.87.gff3
 
+mkdir logs
+mkdir assembl
 for file_path in *.bam; do
 	# get base name including extension
 	base=$(basename $file_path)
@@ -40,7 +46,7 @@ stringtie --merge -p 6 \
 
 # Estimate transcript abundances for each sample with respect to merged list of transcripts
 mkdir merged/counts
-for file_path in align/bam/*.bam; do
+for file_path in *.bam; do
 	echo "Counting " $file_path
 	base=$(basename $file_path)
 	sample=${base%.*}

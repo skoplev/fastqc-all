@@ -8,11 +8,15 @@
 #BSUB -e logs/error.%J
 #BSUB -o logs/output.%J
 
+# USAGE:
+# bsub -cwd <dir bam files> < parFeatureCounts.sh
+
 module load subread
 
 annot=~/links/STARNET/koples01/data_bases/HumanGenome/ensemble_annot/Homo_sapiens.GRCh38.89.gtf
 
 mkdir feature_counts
+mkdir logs
 
 featureCounts -T 8 \
 	-t exon \

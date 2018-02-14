@@ -5,9 +5,9 @@
 
 mkdir logs
 
-fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/fastq_files.txt"
+fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/test_fastq_files.txt"
 
-fastq_files = `cat $fastq_list`
+fastq_files=`cat $fastq_list`
 
 
 # Indexed genome

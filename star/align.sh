@@ -5,13 +5,18 @@
 
 mkdir logs
 
-fastq_list=""
+fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/fastq_files.txt"
 
 fastq_files = `cat $fastq_list`
 
-genome=/sc/orga/projects/STARNET/vamsi/ensemble.H19/
-stargtf=/sc/orga/projects/STARNET/vamsi/ensemble/Homo_sapiens.GRCh37.75.gtf
-ucscGTF=/sc/orga/projects/STARNET/vamsi/ucscgtf/ucsc.gtf
+
+# Indexed genome
+stargtf="/sc/orga/projects/STARNET/koples01/data_bases/HumanGenome/ensemble_annot/Homo_sapiens.GRCh38.89.gtf"
+
+# Genome dir, empty for writing
+genome="/sc/orga/projects/STARNET/koples01/case-control-align/genome"
+
+ucscGTF="/sc/orga/projects/STARNET/vamsi/ucscgtf/ucsc.gtf"
 
 
 module load star

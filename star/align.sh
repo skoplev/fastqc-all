@@ -1,4 +1,4 @@
-# Align RNA-seq using STAR
+# Align RNA-seq using STAR on Minerva supercomputer.
 # Loops over fastq.gz files specified in text file, submitting a STAR
 # alignemnt LSF job for each fastq.gz file.
 
@@ -8,25 +8,23 @@
 module load star
 
 mkdir logs
+mkdir align
 
-# fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/test_fastq_files.txt"
-fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/fastq_files.txt"
+fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/file_paths/fastq_files.txt"
+# fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/file_paths/fastq_files_timeout.txt"
 
 fastq_files=`cat $fastq_list`
 
 
+# Input specifications
+# -----------------------------------------
 # Indexed genome
 stargtf="/sc/orga/projects/STARNET/koples01/data_bases/HumanGenome/ensemble_annot/Homo_sapiens.GRCh38.89.gtf"
 
 # Genome dir, empty for writing
 genome="/sc/orga/projects/STARNET/koples01/case-control-align/genome"
+#------------------------------------------
 
-ucscGTF="/sc/orga/projects/STARNET/vamsi/ucscgtf/ucsc.gtf"
-
-mkdir align
-
-# for file in *.fastq; do
-# cat fastq_list | while read line; do
 for file in $fastq_files; do
 	echo $file
 
@@ -34,8 +32,8 @@ for file in $fastq_files; do
 
 	bsub -J STAR \
 		-P acc_STARNET \
-		-q alloc \
-		-W 6:00 \
+		-q premium \
+		-W 1:00 \
 		-R "rusage[mem=6000]" \
 		-M 6000 \
 		-n 8 \
@@ -54,4 +52,3 @@ for file in $fastq_files; do
 			--outSAMtype BAM SortedByCoordinate \
 			--outFileNamePrefix align/$filename.
 done
-

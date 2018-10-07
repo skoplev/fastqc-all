@@ -4,13 +4,17 @@
 
 # USAGE:
 # star/aligh.sh
+#
+# for paired-end data first create two column file using
+# ls *.fastq | xargs -n 2
 
 module load star
 
 mkdir logs
 mkdir align
 
-fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/file_paths/fastq_files.txt"
+# fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/file_paths/fastq_files.txt"
+fastq_list="/hpc/users/koples01/links/STARNET/koples01/external_projects/lesca_circRNA/fastq_files.txt"
 # fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/file_paths/fastq_files_timeout.txt"
 
 fastq_files=`cat $fastq_list`

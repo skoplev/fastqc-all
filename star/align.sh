@@ -6,7 +6,8 @@
 # star/aligh.sh
 #
 # for paired-end data first create two column file using
-# ls *.fastq | xargs -n 2
+# absolute paths
+# ls -d $PWD/*.fastq.gz | xargs -n 2 > fastq_files.txt
 
 module load star
 

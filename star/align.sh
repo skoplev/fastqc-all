@@ -17,6 +17,8 @@ mkdir align
 fastq_list="/hpc/users/koples01/links/STARNET/koples01/external_projects/lesca_circRNA/fastq_files.txt"
 # fastq_list="/sc/orga/projects/STARNET/koples01/case-control-align/file_paths/fastq_files_timeout.txt"
 
+IFS=$'\n'  # make newlines the only separator, enabling whitespace separated rows for paired-end fastq files
+
 fastq_files=`cat $fastq_list`
 
 
